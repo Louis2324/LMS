@@ -1,0 +1,16 @@
+{
+  "name": "lms",
+  "version": "1.0.0",
+  "description": "A simple library management system that handles books and user orders",
+  "license": "MIT",
+  "author": "Louis2324",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^5.1.0",
+    "mongoose": "^8.18.0"
+  }
+}
