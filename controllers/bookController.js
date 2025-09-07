@@ -24,6 +24,13 @@ export async function getBook (req,res,next) {
     try {
       const book = await Book.findById(req.params.id).populate("borrowedBy","name email");
        if (!book) return res.status(404).json({msg:"Book not found"});
+       return res.status(200).json({msg:"Book found", book:{
+        title: book.title,
+        author:book.author,
+        isbn : book.isbn,
+        category:book.category,
+        borrowedBy: book.borrowedBy
+       }})
     } catch (error) {
         next(error);
     }
