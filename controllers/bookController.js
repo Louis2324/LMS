@@ -29,7 +29,6 @@ export async function getBook (req,res,next) {
         author:book.author,
         isbn : book.isbn,
         category:book.category,
-        borrowedBy: book.borrowedBy
        }})
     } catch (error) {
         next(error);
