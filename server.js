@@ -20,7 +20,7 @@ setInterval(()=>{
     disableOverDueUsers()
      .then(()=>console.log("Checked for overdue users"))
      .catch(err => console.error("Error disabling overdue users:", err));
-});
+},3600000);
 app.listen(process.env.PORT || 4000,()=>{
     console.log(`Server is up and running at http://localhost:${process.env.PORT || 4000}`);
     connectDB();
