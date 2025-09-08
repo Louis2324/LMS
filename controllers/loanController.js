@@ -20,7 +20,7 @@ export const borrowBook = async (req,res,next) => {
         const loan = await Loan.create({
             user:userId,
             book:bookId,
-            borrowedAt: Date.now(),
+            borrowedAt: new Date(),
             dueDate:due,
         })
         return res.status(200).json({msg:"Borrowed Book Succesfully"},loan);
