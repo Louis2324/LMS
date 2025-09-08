@@ -4,7 +4,7 @@ const BORROW_DAYS = 14;
 export const borrowBook = async (req,res,next) => {
     try {
         const bookId = req.params.id;
-        const userId = req.user._id;
+        const userId = req.user.id;
         const due = new Date();
         due.setDate(due.getDate() + BORROW_DAYS);
 
@@ -28,7 +28,7 @@ export const borrowBook = async (req,res,next) => {
 export const returnBook = async (req,res,next) => {
  try {
     const bookId = req.params.id;
-    const userId = req.user._id;
+    const userId = req.user.id;
 
     const book = await Book.findOneAndUpdate(
         {_id:bookId , borrowedBy: userId},
@@ -37,9 +37,11 @@ export const returnBook = async (req,res,next) => {
             $set:{borrowedBy:null,dueDate:null},
         },
         {new:true}
-
     );
+    if(!book) return res.status(403).json({msg:"Cannot return book"});
+    return res.status(200).json({msg:"Book returned succesfully",book});
+
  } catch (error) {
-    
+    next(error);
  }
 };
