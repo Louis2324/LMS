@@ -13,7 +13,7 @@ export async function addBook (req,res,next) {
 
 export async function getBooks (req,res,next) {
     try {
-      const books = await Book.find().populate("borrowedBy","name email");
+      const books = await Book.find();
       if(!books) return res.status(500).json({msg:"Internal Server Error"});
       return res.status(200).json({msg:"Success", books});
     } catch (error) {
@@ -22,7 +22,7 @@ export async function getBooks (req,res,next) {
 }
 export async function getBook (req,res,next) {
     try {
-      const book = await Book.findById(req.params.id).populate("borrowedBy","name email");
+      const book = await Book.findById(req.params.id);
        if (!book) return res.status(404).json({msg:"Book not found"});
        return res.status(200).json({msg:"Book found", book:{
         title: book.title,
