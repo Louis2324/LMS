@@ -12,7 +12,7 @@ router.post("/",authenticateUser,authorizeRoles("admin"),validate(bookValidatorS
 router.put("/:id",authenticateUser,authorizeRoles("admin"),validate(updateValidatorSchema),updateBook);
 router.delete("/:id",authenticateUser,authorizeRoles("admin"),deleteBook);
 
-router.put("/:id/borrow",authenticateUser,borrowBook);
-router.put("/:id/return",authenticateUser,returnBook);
+router.put("/borrow/:id",authenticateUser,borrowBook);
+router.put("/return/:id",authenticateUser,returnBook);
 
 export default router;
