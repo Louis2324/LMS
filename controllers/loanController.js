@@ -40,5 +40,15 @@ export const returnBook = async (req,res,next) => {
     return res.status(200).json({msg:"Book returned successfully",loan});
  } catch (error) {
     next(error);
- }
-};
+ }};
+
+ export const getLoans = async (req,res,next) => {
+    try {
+      const userId = req.user.id;
+      const loans =await Loan.find({user:userId,returnDate:null}).populate("book","title author isbn");
+      if(loans.length === 0) return res.status(404).json({msg:"You haven't loaned any books yet"});
+      return res.status(200).json({msg:"Success",loans});
+    } catch (error) {
+        next(error);
+    }
+ };
